@@ -23,6 +23,9 @@ class IntroductionScreen extends StatefulWidget {
   /// All pages of the onboarding
   final List<PageViewModel>? pages;
 
+  /// Page controller
+  final ValueNotifier<int>? valueNotifier;
+
   /// All pages of the onboarding, as a complete widget instead of a PageViewModel
   final List<Widget>? rawPages;
 
@@ -279,6 +282,7 @@ class IntroductionScreen extends StatefulWidget {
 
   IntroductionScreen(
       {Key? key,
+      this.valueNotifier,
       this.pages,
       this.rawPages,
       this.onDone,
@@ -410,6 +414,11 @@ class IntroductionScreenState extends State<IntroductionScreen> {
     super.initState();
     final int initialPage = min(widget.initialPage, getPagesLength() - 1);
     _pageController = PageController(initialPage: initialPage);
+    widget.valueNotifier?.addListener(() {
+      if (widget.valueNotifier?.value != -1) {
+        animateScroll(widget.valueNotifier?.value ?? 0);
+      }
+    });
     _showBottom = widget.showBottomPart;
     _currentPage = initialPage.toDouble();
     _autoScroll(widget.autoScrollDuration);

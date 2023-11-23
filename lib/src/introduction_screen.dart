@@ -577,7 +577,7 @@ class IntroductionScreenState extends State<IntroductionScreen> {
               onPressed: _onSkip,
             ),
       );
-    } else if (widget.showBackButton && getCurrentPage() > 0) {
+    } else if (widget.showBackButton && getCurrentPage() >= 0) {
       leftBtn = widget.overrideBack ??
           IntroButton(
             child: widget.back!,

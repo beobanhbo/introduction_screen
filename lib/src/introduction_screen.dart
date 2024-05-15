@@ -280,118 +280,117 @@ class IntroductionScreen extends StatefulWidget {
   /// ```
   final CanProgress canProgress;
 
-  IntroductionScreen(
-      {Key? key,
-      this.valueNotifier,
-      this.pages,
-      this.rawPages,
-      this.onDone,
-      this.onSkip,
-      this.onChange,
-      this.done,
-      this.overrideDone,
-      this.skip,
-      this.overrideSkip,
-      this.next,
-      this.overrideNext,
-      this.back,
-      this.overrideBack,
-      this.showSkipButton = false,
-      this.showNextButton = true,
-      this.showDoneButton = true,
-      this.showBottomPart = true,
-      this.showBackButton = false,
-      this.customProgress,
-      this.isProgress = true,
-      this.hideBottomOnKeyboard = false,
-      this.isProgressTap = true,
-      this.freeze = false,
-      this.globalBackgroundColor,
-      this.dotsDecorator = const DotsDecorator(),
-      this.dotsContainerDecorator,
-      this.animationDuration = 350,
-      this.autoScrollDuration,
-      this.infiniteAutoScroll = false,
-      this.initialPage = 0,
-      this.skipOrBackFlex = 1,
-      this.dotsFlex = 1,
-      this.nextFlex = 1,
-      this.curve = Curves.easeIn,
-      this.baseBtnStyle,
-      this.skipStyle,
-      this.nextStyle,
-      this.doneStyle,
-      this.backStyle,
-      this.skipSemantic,
-      this.nextSemantic,
-      this.doneSemantic,
-      this.backSemantic,
-      this.resizeToAvoidBottomInset = true,
-      this.controlsPosition = const Position(left: 0, right: 0, bottom: 0),
-      this.controlsMargin = EdgeInsets.zero,
-      this.controlsPadding = const EdgeInsets.all(16.0),
-      this.bodyPadding = EdgeInsets.zero,
-      this.globalHeader,
-      this.globalFooter,
-      this.scrollControllers,
-      this.pagesAxis = Axis.horizontal,
-      this.scrollPhysics = const BouncingScrollPhysics(),
-      this.rtl = false,
-      this.allowImplicitScrolling = false,
-      this.canProgress = kDefaultCanProgressFunction,
-      this.safeAreaList = const [false, false, false, false]})
+  IntroductionScreen({Key? key,
+    this.valueNotifier,
+    this.pages,
+    this.rawPages,
+    this.onDone,
+    this.onSkip,
+    this.onChange,
+    this.done,
+    this.overrideDone,
+    this.skip,
+    this.overrideSkip,
+    this.next,
+    this.overrideNext,
+    this.back,
+    this.overrideBack,
+    this.showSkipButton = false,
+    this.showNextButton = true,
+    this.showDoneButton = true,
+    this.showBottomPart = true,
+    this.showBackButton = false,
+    this.customProgress,
+    this.isProgress = true,
+    this.hideBottomOnKeyboard = false,
+    this.isProgressTap = true,
+    this.freeze = false,
+    this.globalBackgroundColor,
+    this.dotsDecorator = const DotsDecorator(),
+    this.dotsContainerDecorator,
+    this.animationDuration = 350,
+    this.autoScrollDuration,
+    this.infiniteAutoScroll = false,
+    this.initialPage = 0,
+    this.skipOrBackFlex = 1,
+    this.dotsFlex = 1,
+    this.nextFlex = 1,
+    this.curve = Curves.easeIn,
+    this.baseBtnStyle,
+    this.skipStyle,
+    this.nextStyle,
+    this.doneStyle,
+    this.backStyle,
+    this.skipSemantic,
+    this.nextSemantic,
+    this.doneSemantic,
+    this.backSemantic,
+    this.resizeToAvoidBottomInset = true,
+    this.controlsPosition = const Position(left: 0, right: 0, bottom: 0),
+    this.controlsMargin = EdgeInsets.zero,
+    this.controlsPadding = const EdgeInsets.all(16.0),
+    this.bodyPadding = EdgeInsets.zero,
+    this.globalHeader,
+    this.globalFooter,
+    this.scrollControllers,
+    this.pagesAxis = Axis.horizontal,
+    this.scrollPhysics = const BouncingScrollPhysics(),
+    this.rtl = false,
+    this.allowImplicitScrolling = false,
+    this.canProgress = kDefaultCanProgressFunction,
+    this.safeAreaList = const [false, false, false, false]})
       : assert(
-          pages != null || rawPages != null,
-          "You must set either 'pages' or 'rawPages' parameter",
+  pages != null || rawPages != null,
+  "You must set either 'pages' or 'rawPages' parameter",
+  ),
+        assert(
+        (pages?.length ?? rawPages?.length ?? 0) > 0,
+        "You must provide at least one page using 'pages' or 'rawPages' parameter !",
         ),
         assert(
-          (pages?.length ?? rawPages?.length ?? 0) > 0,
-          "You must provide at least one page using 'pages' or 'rawPages' parameter !",
+        !showDoneButton || done != null || overrideDone != null,
+        "You must set 'done' or 'overrideDone' parameter, or set 'showDoneButton' to false",
         ),
         assert(
-          !showDoneButton || done != null || overrideDone != null,
-          "You must set 'done' or 'overrideDone' parameter, or set 'showDoneButton' to false",
+        done == null || onDone != null,
+        "If you set 'done' parameter, you must also set 'onDone' parameter",
         ),
         assert(
-          done == null || onDone != null,
-          "If you set 'done' parameter, you must also set 'onDone' parameter",
+        !showSkipButton || skip != null || overrideSkip != null,
+        "You must set 'skip' or 'overrideSkip' parameter, or set 'showSkipButton' to false",
         ),
         assert(
-          !showSkipButton || skip != null || overrideSkip != null,
-          "You must set 'skip' or 'overrideSkip' parameter, or set 'showSkipButton' to false",
+        !showNextButton || next != null || overrideNext != null,
+        "You must set 'next' or 'overrideNext' parameter, or set 'showNextButton' to false",
         ),
         assert(
-          !showNextButton || next != null || overrideNext != null,
-          "You must set 'next' or 'overrideNext' parameter, or set 'showNextButton' to false",
+        !showBackButton || back != null || overrideBack != null,
+        "You must set 'back' or 'overrideBack' parameter, or set 'showBackButton' to false",
         ),
         assert(
-          !showBackButton || back != null || overrideBack != null,
-          "You must set 'back' or 'overrideBack' parameter, or set 'showBackButton' to false",
+        !(showBackButton && showSkipButton),
+        "You cannot set 'showBackButton' and 'showSkipButton' to true. Only one, or both false.",
         ),
         assert(
-          !(showBackButton && showSkipButton),
-          "You cannot set 'showBackButton' and 'showSkipButton' to true. Only one, or both false.",
+        skipOrBackFlex >= 0 && dotsFlex >= 0 && nextFlex >= 0,
+        'Flex parameters must be >= 0',
         ),
         assert(
-          skipOrBackFlex >= 0 && dotsFlex >= 0 && nextFlex >= 0,
-          'Flex parameters must be >= 0',
+        initialPage >= 0,
+        'Initial page parameter must by a positive number, >= 0.',
         ),
         assert(
-          initialPage >= 0,
-          'Initial page parameter must by a positive number, >= 0.',
+        hideBottomOnKeyboard == isProgress || !hideBottomOnKeyboard,
+        'hideBottomOnKeyboard can only be true if isProgress = true',
         ),
         assert(
-          hideBottomOnKeyboard == isProgress || !hideBottomOnKeyboard,
-          'hideBottomOnKeyboard can only be true if isProgress = true',
+        customProgress != null && isProgress || customProgress == null,
+        'customProgress can only be used if isProgress = true',
         ),
         assert(
-          customProgress != null && isProgress || customProgress == null,
-          'customProgress can only be used if isProgress = true',
-        ),
-        assert(
-          (infiniteAutoScroll && autoScrollDuration != null) ||
-              !infiniteAutoScroll,
-          'infiniteAutoScroll can only be true if autoScrollDuration != null',
+        (infiniteAutoScroll && autoScrollDuration != null) ||
+            !infiniteAutoScroll,
+        'infiniteAutoScroll can only be true if autoScrollDuration != null',
         ),
         super(key: key);
 
@@ -425,7 +424,7 @@ class IntroductionScreenState extends State<IntroductionScreen> {
     if (widget.hideBottomOnKeyboard) {
       final keyboardVisibilityController = KeyboardVisibilityController();
       keyboardSubscription = keyboardVisibilityController.onChange.listen(
-        (bool visible) {
+            (bool visible) {
           setState(() {
             _showBottom = !visible;
           });
@@ -482,11 +481,9 @@ class IntroductionScreenState extends State<IntroductionScreen> {
     }
   }
 
-  Future<void> _movePage(
-    Duration autoscrollDuration,
-    Duration animationDuration,
-    bool forward,
-  ) async {
+  Future<void> _movePage(Duration autoscrollDuration,
+      Duration animationDuration,
+      bool forward,) async {
     await Future.delayed(autoscrollDuration);
     if (!_isSkipPressed && !_isScrolling) {
       if (forward) {
@@ -560,8 +557,9 @@ class IntroductionScreenState extends State<IntroductionScreen> {
     final isLastPage = (getCurrentPage() == getPagesLength() - 1);
 
     Widget? leftBtn;
+    Widget? skipBtn;
     if (widget.showSkipButton) {
-      leftBtn = Visibility(
+      skipBtn = Visibility(
         visible: !isLastPage && !_isSkipPressed,
         maintainState: true,
         // Needs to be true to maintain animation
@@ -635,18 +633,19 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                   physics: widget.freeze
                       ? const NeverScrollableScrollPhysics()
                       : !widget.canProgress(getCurrentPage())
-                          ? const NeverScrollableScrollPhysics()
-                          : widget.scrollPhysics,
+                      ? const NeverScrollableScrollPhysics()
+                      : widget.scrollPhysics,
                   children: widget.pages
-                          ?.mapIndexed(
-                            (index, page) => IntroPage(
-                              page: page,
-                              scrollController: CustomList(
-                                widget.scrollControllers,
-                              )?.elementAtOrNull(index),
-                            ),
-                          )
-                          .toList() ??
+                      ?.mapIndexed(
+                        (index, page) =>
+                        IntroPage(
+                          page: page,
+                          scrollController: CustomList(
+                            widget.scrollControllers,
+                          )?.elementAtOrNull(index),
+                        ),
+                  )
+                      .toList() ??
                       widget.rawPages!,
                 ),
               ),
@@ -672,35 +671,34 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                       decoration: widget.dotsContainerDecorator,
                       child: Row(
                         children: [
-                          Expanded(
-                            flex: widget.skipOrBackFlex,
-                            child: leftBtn ?? const SizedBox(),
-                          ),
-                          Expanded(
-                            flex: widget.dotsFlex,
-                            child: Center(
-                              child: widget.isProgress
-                                  ? widget.customProgress ??
-                                      Semantics(
-                                        label:
-                                            "Page ${getCurrentPage() + 1} of ${getPagesLength()}",
-                                        excludeSemantics: true,
-                                        child: DotsIndicator(
-                                          reversed: widget.rtl,
-                                          dotsCount: getPagesLength(),
-                                          position: _currentPage,
-                                          decorator: widget.dotsDecorator,
-                                          onTap: widget.isProgressTap &&
-                                                  !widget.freeze
-                                              ? (pos) =>
-                                                  animateScroll(pos.toInt())
-                                              : null,
-                                        ),
-                                      )
-                                  : const SizedBox(),
+                          if (leftBtn != null)
+                            Expanded(
+                              flex: widget.skipOrBackFlex,
+                              child: leftBtn ?? const SizedBox(),
                             ),
-                          ),
-                          Expanded(
+                          Flexible(
+                            flex: widget.dotsFlex,
+                            child: Center(child:
+                            Semantics(
+                              label:
+                              "Page ${getCurrentPage() +
+                                  1} of ${getPagesLength()}",
+                              excludeSemantics: true,
+                              child: DotsIndicator(
+                                reversed: widget.rtl,
+                                dotsCount: getPagesLength(),
+                                position: _currentPage,
+                                decorator: widget.dotsDecorator,
+                                onTap: widget.isProgressTap &&
+                                    !widget.freeze
+                                    ? (pos) =>
+                                    animateScroll(pos.toInt())
+                                    : null,
+                              ),
+                            )
+                              ,),),
+
+                          Flexible(
                             flex: widget.nextFlex,
                             child: rightBtn ?? const SizedBox(),
                           ),
@@ -710,6 +708,12 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                     if (widget.globalFooter != null) widget.globalFooter!
                   ],
                 ),
+              ),
+            if (skipBtn != null)
+              Positioned(
+                top: 20,
+                right: 30,
+                child: skipBtn!,
               ),
           ],
         ),

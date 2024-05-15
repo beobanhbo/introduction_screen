@@ -595,6 +595,7 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                 widget.doneStyle,
             semanticLabel: widget.doneSemantic,
             onPressed: !_isScrolling ? widget.onDone : null,
+            
           );
     } else if (!isLastPage && widget.showNextButton) {
       rightBtn = widget.overrideNext ??
